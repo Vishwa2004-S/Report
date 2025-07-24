@@ -1,0 +1,16 @@
+<main>
+  @if (isLoading) {
+    <div class="loading-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+  
+  @if (!showResults) {
+    <app-report-search (search)="onSearch($event)"></app-report-search>
+  } @else {
+    <app-report-results 
+      [reportData]="reportData"
+      (backToSearch)="onBackToSearch()">
+    </app-report-results>
+  }
+</main>

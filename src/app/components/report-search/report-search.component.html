@@ -1,0 +1,107 @@
+<div class="container">
+  <!-- Updated Header Section -->
+  <header class="report-header">
+    <div class="header-content">
+      <h1>Welcome to Maran Logistics Report</h1>
+      <div class="header-wave"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Report Content -->
+    <main class="report-content">
+      <!-- Error Messages -->
+      @if (showDateError) {
+        <div class="error-message date-error">
+          Invalid date range - From date must be before To date
+        </div>
+      }
+      
+      @if (showNoRecordsError) {
+        <div class="error-message no-records-error">
+          No records found for the selected date range
+        </div>
+      }
+      
+      <div class="search-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>From Date</label>
+            <input type="date" [(ngModel)]="fromDate" (change)="validateDates()">
+          </div>
+          <div class="form-group">
+            <label>To Date</label>
+            <input type="date" [(ngModel)]="toDate" (change)="validateDates()">
+          </div>
+        </div>
+        <button class="search-button" (click)="onSearch()" [disabled]="!fromDate || !toDate">
+          Search
+        </button>
+      </div>
+      
+      <!-- Table Section -->
+      <div class="report-table-container">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>HAWB No</th>
+              <th>HAWB Date</th>
+              <th>PCS/Weight</th>
+              <th>Sender</th>
+              <th>Receiver</th>
+              <th>From → To</th>
+              <th>Delivery Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="no-records">
+              <td colspan="9">Select date range and click Search to view reports</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span></span>
+        <button class="page-nav"><</button>
+        <button class="page-nav">></button>
+        <button class="page-nav">>></button>
+        <span class="page-info">0 of 0 pages (0 items)</span>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Footer Section -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3><span aria-hidden="true">🚚</span> Maran Logistics</h3>
+        <p><span aria-hidden="true">🌐</span> Delivering excellence worldwide</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3><span aria-hidden="true">📞</span> Contact</h3>
+        <p><span aria-hidden="true">✉️</span> infomaranlogistics.com</p>
+        <p><span aria-hidden="true">📱</span> +91 9884276630</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3><span aria-hidden="true">📍</span> Locations</h3>
+        <p><span aria-hidden="true">🌍</span> Global Network</p>
+        <p><span aria-hidden="true">🛡️</span> 24/7 Support</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2025 Maran Logistics. All rights reserved. 
+        <span aria-hidden="true">📦</span>
+        <span aria-hidden="true">✈️</span>
+        <span aria-hidden="true">🚛</span>
+      </p>
+    </div>
+  </footer>
+</div>

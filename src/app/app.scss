@@ -1,0 +1,85 @@
+main {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.back-button {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Existing styles... */
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  padding: 0 15px;
+  
+  @media (min-width: 768px) {
+    margin: 40px 0;
+    padding: 0;
+  }
+}
+
+.back-button {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  &:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  .back-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover .back-icon {
+    transform: translateX(-4px);
+  }
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+}
+
+/* Existing loading overlay styles... */
+/* ... existing styles ... */
+
+/* Existing styles... */
+

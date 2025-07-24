@@ -1,0 +1,116 @@
+<div class="report-results-container">
+  <!-- Updated Header Section -->
+  <header class="report-header">
+    <div class="header-content">
+      <h1>Welcome to Maran Logistics Report</h1>
+      <div class="header-wave"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Results Section -->
+    <main class="report-content">
+      <div class="report-header">
+        <h2>Report Results</h2>
+      </div>
+
+      <!-- Results Table -->
+      <div class="report-table-container">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>HAWB No</th>
+              <th>HAWB Date</th>
+              <th>PCS/Weight</th>
+              <th>Sender</th>
+              <th>Receiver</th>
+              <th>From → To</th>
+              <th>Delivery Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of paginatedData; track item.hawb_no; let i = $index) {
+              <tr>
+                <td>{{ (pageIndex * pageSize) + i + 1 }}</td>
+                <td>{{ item.hawb_no }}</td>
+                <td>{{ item.hawb_date | date:'shortDate' }}</td>
+                <td>{{ item.total_carton }} PCS / {{ item.total_weight }} kg</td>
+                <td>{{ item.sender_name }}</td>
+                <td>{{ item.receiver_name }}</td>
+                <td>{{ item.customer_name }} → {{ item.receiver_district_name || 'N/A' }}</td>
+                <td>
+                  @if (item.delivery_date) {
+                    {{ item.delivery_date | date:'shortDate' }}
+                  } @else {
+                    N/A
+                  }
+                </td>
+                <td>
+                  <span class="status-badge" [class]="getStatusClass(item.invoice_status)">
+                    {{ item.invoice_status }}
+                  </span>
+                </td>
+              </tr>
+            }
+            @empty {
+              <tr class="no-records">
+                <td colspan="9">No records to display</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span></span>
+        <button class="page-nav" (click)="previousPage()" [disabled]="pageIndex === 0"><</button>
+        <button class="page-nav" (click)="nextPage()" [disabled]="pageIndex >= (reportData.length / pageSize) - 1">></button>
+        <button class="page-nav" (click)="lastPage()">>></button>
+        <span class="page-info">
+          {{ pageIndex + 1 }} of {{ totalPages }} pages ({{ reportData.length }} items)
+        </span>
+      </div>
+      
+      <!-- Back Button -->
+      <div class="back-button-container">
+        <button class="back-button" (click)="onBackToSearch()">
+          <span class="back-icon">←</span> Back to Search
+        </button>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Footer Section -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3><span aria-hidden="true">🚚</span> Maran Logistics</h3>
+        <p><span aria-hidden="true">🌐</span> Delivering excellence worldwide</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3><span aria-hidden="true">📞</span> Contact</h3>
+        <p><span aria-hidden="true">✉️</span> infomaranlogistics.com</p>
+        <p><span aria-hidden="true">📱</span> +91 9884276630</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3><span aria-hidden="true">📍</span> Locations</h3>
+        <p><span aria-hidden="true">🌍</span> Global Network</p>
+        <p><span aria-hidden="true">🛡️</span> 24/7 Support</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2025 Maran Logistics. All rights reserved. 
+        <span aria-hidden="true">📦</span>
+        <span aria-hidden="true">✈️</span>
+        <span aria-hidden="true">🚛</span>
+      </p>
+    </div>
+  </footer>
+</div>
